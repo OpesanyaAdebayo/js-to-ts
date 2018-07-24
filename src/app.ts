@@ -6,7 +6,7 @@ import { default as logger } from 'morgan';
 
 import { default as index} from './routes/index';
 import { default as users} from './routes/users';
-
+import responseError from './error';
 var app = express();
 
 // view engine setup
@@ -22,17 +22,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
-interface Error {
-  status?: number,
-  message?: string
-}
 // catch 404 and forward to error handler
 app.use(function(req: Request, res:Response, next:NextFunction) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err: Error, req: Request, res: Response, next: NextFunction) {
+app.use(function(err: responseError, req: Request, res: Response, next: NextFunction) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
