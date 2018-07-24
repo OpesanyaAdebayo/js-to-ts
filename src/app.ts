@@ -7,7 +7,8 @@ import { default as logger } from 'morgan';
 import { default as index} from './routes/index';
 import { default as users} from './routes/users';
 import responseError from './error';
-var app = express();
+
+var app: express.Express = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
@@ -38,4 +39,4 @@ app.use(function(err: responseError, req: Request, res: Response, next: NextFunc
   res.render('error');
 });
 
-module.exports = app;
+export default app;
