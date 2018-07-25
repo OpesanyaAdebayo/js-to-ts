@@ -31,13 +31,23 @@ To solve this, we'll take advantage of definition files by Node and Express.
 - Delete `var express = require('express');` and replace it with `import express, { Request, Response, NextFunction} from 'express';`
 - Delete `router.get('/', function(req, res, next)` and replace it with `router.get('/', function(req: Request, res: Response, next: NextFunction)`. This basically enforces types for the `req`, `res` and `next` parameters. Do this across the routes files and `app.ts`
 
-3. Once that is done, we'll need change our code to use the `import` syntax, instead of the `require` syntax. I know things can still go well if you stick with `require`, but it's advisable to use `import` except when you're not supposed to. The top sectio in your `app.js` should look like this now:
-```import express, { Request, Response, NextFunction } from 'express';
+3. Once that is done, we'll need change our code to use the `import` syntax, instead of the `require` syntax. I know things can still go well if you stick with `require`, but it's advisable to use `import` except when you're not supposed to. The top section in your `app.js` should look like this now:
+```
+import express, { Request, Response, NextFunction } from 'express';
 import createError from 'http-errors';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import { default as logger } from 'morgan';
 ```
+Also update your routes to look like this:
+`export default router;` instead of `module.exports = router`
+
+To import them in `app.js`, change the `require` syntax to:
+```
+import { default as index} from './routes/index';
+import { default as users} from './routes/users';
+```
+
 4. Once you do this, you have a couple of errors: `could not find declaration file for <module>`. All you need to do is install type definitions for that module. Run `npm install @types/<module-name> --save-dev`.
 
 5. Also in `app.js`, you have an error: `Parameter 'err' implicitly has an 'any' type`. What you need to to is specify the `err` paremeter type as Error as thus: `err: Error`.
