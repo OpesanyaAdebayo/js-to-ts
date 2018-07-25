@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./dist/bin/www.js",
     "test": "jest",
-    "init-jest": "jest --init"
+    "build": "tsc"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
