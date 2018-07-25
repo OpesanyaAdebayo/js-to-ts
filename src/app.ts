@@ -6,7 +6,7 @@ import { default as logger } from 'morgan';
 
 import { default as index} from './routes/index';
 import { default as users} from './routes/users';
-import responseError from './error';
+import Error from './error';
 
 var app: express.Express = express();
 
@@ -29,7 +29,7 @@ app.use(function(req: Request, res:Response, next:NextFunction) {
 });
 
 // error handler
-app.use(function(err: responseError, req: Request, res: Response, next: NextFunction) {
+app.use(function(err: Error, req: Request, res: Response, next: NextFunction) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -1,6 +1,7 @@
-export default interface responseError extends Error {
+export default interface Error {
     status: number,
-    message: string,
+    message?: string,
     syscall: string,
     code: string
+
 }

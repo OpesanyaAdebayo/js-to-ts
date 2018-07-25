@@ -8,7 +8,7 @@ var app = require('../app');
 var debug = require('debug')('app:server');
 var http = require('http');
 
-import responseError from '../error';
+import Error from '../error';
 /**
  * Get port from environment and store in Express.
  */
@@ -54,7 +54,7 @@ function normalizePort(val: string) {
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error : responseError) {
+function onError(error : Error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
