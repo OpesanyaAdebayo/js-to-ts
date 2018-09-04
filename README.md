@@ -72,6 +72,8 @@ export default interface Error {
     code: string
 
 }
+- Change `var app = require('../app');` to `import { default as app } from '../app'`
+
 ```
 9. Now, that's all, and your application is fully migrated to Typescript.
 
@@ -84,8 +86,9 @@ export default interface Error {
     "start": "node ./dist/bin/www.js"
   }
 ```
+3. Run `npm run start`.
 
-3. You should have your app running on `http//localhost:3000`. You're live! 🎉🎉🎉
+4. You should have your app running on `http//localhost:3000`. You're live! 🎉🎉🎉
 
 ### Questions
 If you have any further question or issue, please feel free to open an issue in this repo.
